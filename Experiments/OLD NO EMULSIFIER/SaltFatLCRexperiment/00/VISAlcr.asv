@@ -8,11 +8,11 @@ set(obj1,'Timeout',3);
 
 write(obj1, ':FUNCtion:IMPedance:TYPE ZTD');%%CPD|CPQ|CPG|CPRP|CSD|CSQ|CSRS|LPD|LPQ|LPG|LPRP|LPRD|LSD|LSQ|LSRS|LS
 %%RD|RX|ZTD|ZTR|GB|YTD|YTR|VDID
-write(obj1, ':FREQuency:CW 21');
+write(obj1, ':FREQuency:CW 300000');
 write(obj1, ':VOLTage:LEVel 1');
 write(obj1, ':APERture MEDium');%SHORt  MEDium
 write(obj1, ':DISPlay:ENABle 1');%disable display
-pause(20)
+pause(3)
 
 
 
@@ -70,30 +70,21 @@ ylabel('Impedence Angle')
 saveas(gcf, "d.jpg")
 
 %%%%Nyquist plot done here:
-Z = y1_out;
-d = y2_out;
-
-real = [];
-imaginary = [];
-
+d = y1_out
+Z = y2_out
 for r = 1:300
-    temp_real = Z(r)*cosd(d(r));
+    temp_real = Z(r)*sind(d(r));
     real = [real;temp_real];    
     
-    temp_imaginary = Z(r)*sind(d(r));
+    temp_imaginary = Z(r)*cosd(d(r));
     imaginary = [imaginary;temp_imaginary];
 end
-
-writematrix(real,"real.txt")
-writematrix(imaginary,"imaginary.txt")
-
 figure;
 scatter(real,imaginary)
 title('Nyquist Plot')
 xlabel('Re(Z)') 
 ylabel('Im(Z)')
 saveas(gcf, "Myquist.jpg")
-
 
 
 

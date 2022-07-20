@@ -1,0 +1,19 @@
+clear
+
+x = readmatrix("x.txt");
+Z = readmatrix("Z.txt");
+d = readmatrix("d.txt");
+
+real = [];
+imaginary = [];
+
+Z(1)
+
+for r = 1:300
+    temp_real = Z(r)*sind(d(r));
+    real = [real;temp_real];    
+    
+    
+    
+    
+end
